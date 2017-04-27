@@ -1,30 +1,25 @@
 #include <cstdio>
-#include <string.h>
-
-void print(char l[]) {
-    bool open = true;
-    for(int i = 0; i < strlen(l); i++) {
-        char v = l[i];
-        /*if (v == '"') {
-            if (open == true) {
-                printf("%s", "``");
-                open = false;
-                printf("%s: %d", "changed to false", open);
-            }else {
-                printf("%s", "''");
-                open = true;
-            }
-        }else {
-            printf("%c", v);
-        }*/
-        printf("%c", v);
-    }
-}
+#include <cstring>
 
 int main() {
-    char line[256];
-    while(scanf("%s", line)) {
-        print(line);
+    char line[1024];
+    bool open = true;
+
+    while(scanf("%s", &line)) {
+        int len = strlen(line);
+        for (int i = 0; i < len; i ++) {
+            if (line[i] == '"') {
+                if (open) {
+                    printf("``");
+                }else {
+                    printf("''");
+                }
+                open = (!open);
+            }else {
+                printf("%c", line[i]);
+            }
+        }
+        printf("\n");
     }
     return 0;
 }
