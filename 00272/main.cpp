@@ -9,11 +9,8 @@ int main() {
         int len = strlen(line);
         for (int i = 0; i < len; i ++) {
             if (line[i] == '"') {
-                if (open) {
-                    printf("``");
-                }else {
-                    printf("''");
-                }
+                if (open) printf("``");
+                else printf("''");
                 open = (!open);
             }else {
                 printf("%c", line[i]);
