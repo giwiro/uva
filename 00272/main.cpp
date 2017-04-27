@@ -5,7 +5,7 @@ int main() {
     char line[1024];
     bool open = true;
 
-    while(scanf("%s", &line)) {
+    while(fgets(line, 1024, stdin)) {
         int len = strlen(line);
         for (int i = 0; i < len; i ++) {
             if (line[i] == '"') {
