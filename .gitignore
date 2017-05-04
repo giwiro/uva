@@ -35,3 +35,8 @@
 *.app
 
 *.stackdump
+
+
+# Swap files
+*.swp
+*.swo
