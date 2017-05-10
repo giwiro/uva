@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+    ios::sync_with_stdio(false);
     int i = 0, times, a, b, c, max, min;
     cin >> times;
     while(i++, i <= times) {
