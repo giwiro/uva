@@ -33,6 +33,7 @@ book inputToBook(string line) {
             break;
         }
     }
+    // cout << "line: " << line << endl;
     b.title = line.substr(titleIndex[0], titleIndex[1]);
     b.author = line.substr(titleIndex[1] + 6);
     return b;
@@ -51,32 +52,58 @@ int main() {
     map<string, bool> borrow;
     string line, task, target;
     while(getline(cin, line), line != "END") {
+        cout << "line: " << line << endl;
         book b = inputToBook(line);
         books.push_back(b);
-        // cout << "line: " << line << endl;
-        cout << "title: " << b.title << "\t" << "author: " << b.author << endl;
+        // cout << "title: " << b.title << "\t" << "author: " << b.author << endl;
     }
     sort(ALL(books));
 
     for (int i = 0; i < books.size(); i++) {
         booksIndex[books[i].title] = i;
+        borrow[books[i].title] = false;
         // cout << "book title: " << books[i].title << endl;
     }
+
+    int prevIndex = -1;
+    string prevTitle;
 
     while(getline(cin, line), line != "END") {
         task = line.substr(0, 6);
         // cout << "task: " << task << endl;
         // cout << "line: " << line << endl;
         if (task == "BORROW") {
-            target = line.substr(8, line.length() - 10);
+            target = line.substr(8, line.length() - 9);
             borrow[target] = true;
+            cout << ">> BORROW, target: " << target << endl;
         }else if (task == "RETURN") {
+            target = line.substr(8, line.length() - 9);
             ret.push_back(target);
-            borrow.erase(target);
+            borrow[target] = false;
+            cout << ">> RETURN, target: " << target << "\tret.size(): " << ret.size() << endl; 
         }else if (task == "SHELVE") {
-            cout << "shelf: " << ret.size() << endl;
-            for (string title : ret) {
-                
+            cout << ">> SHELVE, ret.size(): " << ret.size() << endl;
+            for (int j = 0; j < ret.size(); j++) {
+                cout << "j: " << j << "\tprimer for: " << ret[j] << endl;
+                cout << "Put \"" << ret[j] << "\" ";
+                cout << "booksIndex[b]: " << booksIndex["b"] - 1 << endl;
+                // prevIndex = booksIndex[ret[j]] - 1;
+                prevIndex = booksIndex["b"] - 1;
+                if (prevIndex < 0) {
+                    cout << "first" << endl;
+                    continue;
+                }
+                prevTitle = books[prevIndex].title;
+                // cout << "\tisBorrow: " << borrow[prevTitle];
+                while(borrow[prevTitle] == true) {
+                    prevIndex--;
+                    prevTitle = books[prevIndex].title;
+                }
+                prevTitle = books[prevIndex].title;
+                cout << "after \"" << prevTitle << "\"";
+                // cout << "\tprevIndex: " << prevIndex;
+                // cout << "\tprevTitle: " << prevTitle;
+                cout << endl;
             }
             ret.clear();
             cout << "END" << endl;
