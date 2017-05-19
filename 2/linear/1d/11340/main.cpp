@@ -21,13 +21,13 @@ int main() {
 		cin >> k;
 		while(k--) {
 			cin >> c >> val;
-                        // cout << "Save to key: " << c << " --> " << val << endl;
+            // cout << "Save to key: " << c << " --> " << val << endl;
 			table[c] = val;
 		}
 		cin >> m;
-                // cin.ignore();
-                cin.ignore();
-                // cout << "Times: " << m << endl;
+        // cin.ignore();
+        cin.ignore(1000, '\n');
+        // cout << "Times: " << m << endl;
 		while(m--, m >= 0) {
                         getline(cin, line);
 			// cout << "line: " << line << endl;
