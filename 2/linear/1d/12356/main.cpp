@@ -25,6 +25,7 @@ void printList(node first, int size) {
 */
 int main() {
     int s, b, l, r;
+    ios::sync_with_stdio(false);
     while(cin >> s >> b, s && b) {
         sol[1].value = 1;
         // cout << "S: " << s << ", B: " << b << endl;
