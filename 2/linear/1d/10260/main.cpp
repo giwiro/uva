@@ -29,8 +29,7 @@ int main() {
     while(cin >> name) {
         char prev = '\0';
         for (auto c : name) {
-            // cout << "(c: " << c << ", db[c]: " << db[c] << ", prev: " << prev << ") ";
-            if (db[c] != prev) cout << db[c];
+            if (db[c] && db[c] != prev) cout << db[c];
             prev = db[c];
         }
         cout << endl;
