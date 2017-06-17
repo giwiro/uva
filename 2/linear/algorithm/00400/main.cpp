@@ -9,12 +9,6 @@
 
 using namespace std;
 
-void print(const vector<string> names) {
-    for (auto name : names) {
-        cout << name << endl;
-    }
-}
-
 int main() {
     int times;
     while(cin >> times) {
@@ -35,7 +29,6 @@ int main() {
         C = ((60-L)/(L+2)) + 1;
         R = ceil(names.size()/(double)C);
         C = ceil(names.size() /(double)R);
-        // cout << "------------> L: " << L << "\tC: " << C << "\tR:" << R << endl;
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
                 int extra = j + 1 == C ? 0 : 2;
