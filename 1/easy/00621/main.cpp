@@ -1,25 +1,28 @@
-#include <iostream>
-#include <string>
+#include <cstdio>
+#include <cstring>
 
-using namespace std;
+#define BUFFER_SIZE 2000
 
 int main() {
-    int times;
-    long val;
-    cin >> times;
-    while(times--) {
-        cin >> val;
-        string str = to_string(val);
-        cout << "val: " << val << "\t";
-        if (val % 100 == 35){
-            cout << "-" << endl;
-        }else if (val % 10 == 4 && str[0] == '9') {
-           cout << "*" << endl;
-        }else if (str[0] == '1' && str[1] == '9' && str[2] == '0') {
-            cout << "?" << endl;
-        }else {
-            cout << "+" << endl;
+    int ts;
+    char numbers[BUFFER_SIZE];
+    scanf("%d", &ts);
+    while(ts--) {
+        scanf("%s", numbers);
+        // fgets(numbers, BUFFER_SIZE, stdin);
+        int size = strlen(numbers);
+        // printf("(%d) numbers: %s\n", strlen(numbers), numbers);
+        if (strcmp(numbers, "1") == 0 || strcmp(numbers, "4") == 0 || strcmp(numbers, "78") == 0) {
+            printf("+\n");
+        }else if(numbers[size - 2] == '3' && numbers[size - 1] == '5') {
+            printf("-\n");
+        }else if(numbers[0] == '9' && numbers[size - 1] == '4') {
+            printf("*\n");
+        }else if(strncmp(numbers, "190", 3) == 0) {
+            printf("?\n");
+        }else { 
+            printf("+\n");
         }
     }
-    return 0;
 }
+
